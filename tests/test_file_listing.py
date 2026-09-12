@@ -3,17 +3,11 @@
 import unittest
 from unittest.mock import patch
 import re
-from tmc import points
 
-from tmc.utils import load, get_stdout, patch_helper
+from src.file_listing import file_listing
 
-module_name="src.file_listing"
-file_listing = load(module_name, "file_listing")
-ph = patch_helper(module_name)
 
-@points('p02-02.1')
-class FileListing(unittest.TestCase):
-
+class TestFileListing(unittest.TestCase):
 
     def test_size(self):
         result=file_listing()
@@ -57,12 +51,12 @@ class FileListing(unittest.TestCase):
 
     def test_called(self):
         with patch('builtins.open', side_effect=open) as o,\
-             patch(ph('re.compile'), side_effect=re.compile) as c,\
-             patch(ph('re.match'), side_effect=re.match) as m,\
-             patch(ph('re.fullmatch'), side_effect=re.fullmatch) as fm,\
-             patch(ph('re.search'), side_effect=re.search) as s,\
-             patch(ph('re.findall'), side_effect=re.findall) as fa,\
-             patch(ph('re.finditer'), side_effect=re.finditer) as fi:
+             patch('src.file_listing.re.compile', side_effect=re.compile) as c,\
+             patch('src.file_listing.re.match', side_effect=re.match) as m,\
+             patch('src.file_listing.re.fullmatch', side_effect=re.fullmatch) as fm,\
+             patch('src.file_listing.re.search', side_effect=re.search) as s,\
+             patch('src.file_listing.re.findall', side_effect=re.findall) as fa,\
+             patch('src.file_listing.re.finditer', side_effect=re.finditer) as fi:
             result=file_listing()
             o.assert_called()
             self.assertTrue(c.called or m.called or fm.called or s.called or fa.called or fi.called,
@@ -72,4 +66,3 @@ class FileListing(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
