@@ -9,26 +9,23 @@ def file_listing(filename="src/listing.txt"):
     pass
 
 def main():
-    file_listing()
+    result = file_listing()
 
-    #Begin tests
-    #result = file_listing()
-    #print(len(result))
-    #Output should be: 47
+    print(len(result))
+    # Expected: 47
 
-    #for i in result:
-    #   print(len(i))
-    #Output should all be 6s as the length of each item is 6
+    for t in result:
+        print(len(t))
+    # Expected: all 6s, since each tuple has six elements
 
-    #for t in result:
-    #   print(f"Items in result should be tuples and they are {type(t)}")
-    #   print(f"First item in tuple should be an str, is {type(t[0])}")
-    #   print(f"Second item in tuple should be an int, is {type(t[1])}")
-    #   print(f"Third item in tuple should be an int, is {type(t[2])}")
-    #   print(f"Fourth item in tuple should be an int, is {type(t[3])}")
-    #   print(f"Fifth item in tuple should be an int, is {type(t[4])}")
-    #   print(f"Sixth item in tuple should be an str, is {type(t[5])}")
-
+    for t in result:
+        print(f"Items in result should be tuples and they are {type(t)}")
+        print(f"First item in tuple (size) should be an int, is {type(t[0])}")
+        print(f"Second item in tuple (month) should be a str, is {type(t[1])}")
+        print(f"Third item in tuple (day) should be an int, is {type(t[2])}")
+        print(f"Fourth item in tuple (hour) should be an int, is {type(t[3])}")
+        print(f"Fifth item in tuple (minute) should be an int, is {type(t[4])}")
+        print(f"Sixth item in tuple (filename) should be a str, is {type(t[5])}")
 
 
 if __name__ == "__main__":
